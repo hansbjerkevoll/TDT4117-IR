@@ -4,9 +4,9 @@ from nltk.stem.porter import PorterStemmer
 
 
 """
-Task 1: Data Loading and preprocessing
+    Task 1: Data Loading and preprocessing
+        Load and process (clean, tokenize and stem) data
 """
-
 
 def load_and_process_file(filename):
 
@@ -27,7 +27,11 @@ def load_and_process_file(filename):
     original_paragraph_list = list()
     original_paragraph = ""
 
+    # 1.6 PorterStemmer
+    stemmer = PorterStemmer()
+
     for line in file:
+
         original_line = line
 
         # 1.5 Remove string punctuation, whitespace and convert to lower case
@@ -38,17 +42,17 @@ def load_and_process_file(filename):
             current_paragraph += line.split(' ')
             original_paragraph += original_line
 
-        # 1.6 Using PorterStemmer to stem words
-        for i, word in enumerate(current_paragraph):
-            x = 0
-            current_paragraph[i] = PorterStemmer().stem(word)
-            # do nothing
-
         if line == "" and len(current_paragraph) != 0:
             # 1.3 Filter out paragraphs containing "Gutenberg"
             if 'gutenberg' not in current_paragraph:
+
+                # 1.6 Using PorterStemmer to stem words
+                for i, word in enumerate(current_paragraph):
+                    current_paragraph[i] = stemmer.stem(word)
+
                 paragraph_list.append(current_paragraph)
                 original_paragraph_list.append(original_paragraph)
+
             current_paragraph = list()
             original_paragraph = ""
 
