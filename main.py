@@ -30,3 +30,6 @@ firstbljde = blah[1]
     Task 4: Querying
 """
 
+text_query = "What is the function of money?"
+print(data_loading_preprocessing.process_query(text_query))
+

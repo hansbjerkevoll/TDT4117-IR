@@ -57,3 +57,18 @@ def load_and_process_file(filename):
             original_paragraph = ""
 
     return paragraph_list, original_paragraph_list
+
+
+"""
+    Task 4.1 Process the query
+"""
+
+
+def process_query(query_string):
+
+    query_string = ''.join(char for char in query_string if char not in set(string.punctuation)).strip().lower()
+    query_list = query_string.split(' ')
+    for i, word in enumerate(query_list):
+        query_list[i] = PorterStemmer().stem(word)
+
+    return query_list
