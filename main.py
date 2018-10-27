@@ -19,11 +19,11 @@ dictionary = things[1]
 
 """
     Task 3: Retrieval Models
-
 """
-blah = retrieval_models(corpus, dictionary)
-firstblah = blah[0]
-firstbljde = blah[1]
+
+indexes = retrieval_models(corpus, dictionary)
+tfidf_index = indexes[0]
+lsi_index = indexes[1]
 
 
 """
@@ -33,3 +33,14 @@ firstbljde = blah[1]
 text_query = "What is the function of money?"
 print(data_loading_preprocessing.process_query(text_query))
 
+#4.1
+text_query  = "What is the function of money?"
+query = data_loading_preprocessing.process_query(text_query)
+query = dictionary.doc2bow(query)
+
+#4.2 convert BOW to TF-IDF representation
+
+tfidf_query = tfidf_model[]
+
+
+doc2similarity = enumerate(tfidf_index[tfidf_query])
