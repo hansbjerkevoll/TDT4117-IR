@@ -6,7 +6,7 @@ import gensim
 """
     Task 1: Data loading and preprocessing
 """
-paragraphs = data_loading_preprocessing.load_and_process_file("pg3300.txt")
+paragraphs = data_loading_preprocessing.load_and_process_file("practice.txt")
 processed_paragraphs = paragraphs[0]
 original_paragraphs = paragraphs[1]
 
@@ -36,18 +36,20 @@ query_collection = [query_corpus]
 
 #4.2 convert BOW to TF-IDF representation
 tfidf_model = gensim.models.TfidfModel(query_collection)
+print(tfidf_model)
 tfidf_query = tfidf_model[query_collection]
-
 
 #4.3
 doc2similarity = enumerate(tfidf_index[tfidf_query])
-print(sorted(doc2similarity, key=lambda kv: -kv[1])[:3] )
+print(sorted(doc2similarity, key=lambda kv: -kv[1])[:3])
 
-"""
+
 #4.4
+lsi_model = gensim.models.LsiModel(query_corpus, id2word=dictionary, num_topics=100)
 lsi_query = lsi_model[tfidf_query]
+
 print( sorted(lsi_query, key=lambda kv: -abs(kv[1]))[:3] )
-print( lsi.show_topics() )
+#print( lsi.show_topics() )
 doc2similarity = enumerate(lsi_index[lsi_query])
 print( sorted(doc2similarity, key=lambda kv: -kv[1])[:3] )
-"""
+
