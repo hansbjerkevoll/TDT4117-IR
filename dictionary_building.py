@@ -23,7 +23,7 @@ def build_dictionary(paragraphs):
 
     # 2.2 Map paragraphs into Bags-Of-Words. A corpus object
     corpus = [dictionary.doc2bow(paragraph) for paragraph in paragraphs]
-    return corpus
+    return corpus, dictionary
 
 
 
