@@ -22,29 +22,30 @@ dictionary = things[1]
 """
 retrieved = retrieval_models(corpus, dictionary)
 tfidf_index = retrieved[0]
-lsi_index = retrieved[1]
-
+tfidf_model = retrieved[1]
 
 """
     Task 4: Querying
 """
-#4.1
-text_query  = "What is the function nation of money?"
+# 4.1 Apply  all  necessary transformations
+text_query = "How taxes influence Economics?"
 query = data_loading_preprocessing.process_query(text_query)
 query_corpus = dictionary.doc2bow(query)
-query_collection = [query_corpus]
 
-#4.2 convert BOW to TF-IDF representation
-tfidf_model = gensim.models.TfidfModel(query_collection)
-print(tfidf_model)
-tfidf_query = tfidf_model[query_collection]
+# 4.2 Convert BOW to TF-IDF representation
+query_tfidf = tfidf_model[query_corpus]
 
-#4.3
-doc2similarity = enumerate(tfidf_index[tfidf_query])
-print(sorted(doc2similarity, key=lambda kv: -kv[1])[:3])
+# 4.3 Report (print) top 3 the most relevant paragraphs for the query "What is the function of money?"
+simimilarities = sorted(enumerate(tfidf_index[query_tfidf]), key=lambda item: -item[1])[:3]
 
+for sim in simimilarities:
+    para_index = sim[0]
+    para = original_paragraphs[para_index].strip().split('\n')[0:5]
+    report_string = ("[paragraph " + str(para_index + 1) + "]\n" + ''.join(line + '\n' for line in para))
+    print(report_string)
 
-#4.4
+"""
+# 4.4
 lsi_model = gensim.models.LsiModel(query_corpus, id2word=dictionary, num_topics=100)
 lsi_query = lsi_model[tfidf_query]
 
@@ -52,4 +53,4 @@ print( sorted(lsi_query, key=lambda kv: -abs(kv[1]))[:3] )
 #print( lsi.show_topics() )
 doc2similarity = enumerate(lsi_index[lsi_query])
 print( sorted(doc2similarity, key=lambda kv: -kv[1])[:3] )
-
+"""

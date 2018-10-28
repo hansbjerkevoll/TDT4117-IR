@@ -5,6 +5,7 @@ import gensim
         Remove stopwords and convert paragraphs into Bags-of-Words(?)
 """
 
+
 def build_dictionary(paragraphs):
 
     # 2.0 Build a dictionary
@@ -24,6 +25,3 @@ def build_dictionary(paragraphs):
     # 2.2 Map paragraphs into Bags-Of-Words. A corpus object
     corpus = [dictionary.doc2bow(paragraph) for paragraph in paragraphs]
     return corpus, dictionary
-
-
-
