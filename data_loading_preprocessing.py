@@ -44,7 +44,13 @@ def load_and_process_file(filename):
 
         if line == "" and len(current_paragraph) != 0:
             # 1.3 Filter out paragraphs containing "Gutenberg"
-            if 'gutenberg' not in current_paragraph:
+            """
+            guten_check = False
+            for word in current_paragraph:
+                if 'gutenberg' in word:
+                    guten_check = True
+            """
+            if "gutenberg" not in current_paragraph:
 
                 # 1.6 Using PorterStemmer to stem words
                 for i, word in enumerate(current_paragraph):

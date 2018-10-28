@@ -18,6 +18,6 @@ def retrieval_models(corpus, dictionary):
     index_lsi = gensim.similarities.MatrixSimilarity(lsi_corpus)
 
     # 3.5 Report (print) and try to interpret first 3 LSI topics
-    #print(lsi_model.show_topics())
+    print(lsi_model.show_topics())
 
-    return index_tfidf, tfidf_model
+    return index_tfidf, tfidf_model, index_lsi, lsi_model

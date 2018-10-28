@@ -6,7 +6,7 @@ import gensim
 """
     Task 1: Data loading and preprocessing
 """
-paragraphs = data_loading_preprocessing.load_and_process_file("practice.txt")
+paragraphs = data_loading_preprocessing.load_and_process_file("pg3300.txt")
 processed_paragraphs = paragraphs[0]
 original_paragraphs = paragraphs[1]
 
@@ -23,6 +23,8 @@ dictionary = things[1]
 retrieved = retrieval_models(corpus, dictionary)
 tfidf_index = retrieved[0]
 tfidf_model = retrieved[1]
+lsi_index = retrieved[2]
+lsi_model = retrieved[3]
 
 """
     Task 4: Querying
@@ -37,20 +39,29 @@ query_tfidf = tfidf_model[query_corpus]
 
 # 4.3 Report (print) top 3 the most relevant paragraphs for the query "What is the function of money?"
 simimilarities = sorted(enumerate(tfidf_index[query_tfidf]), key=lambda item: -item[1])[:3]
-
+report_string = ""
 for sim in simimilarities:
     para_index = sim[0]
     para = original_paragraphs[para_index].strip().split('\n')[0:5]
-    report_string = ("[paragraph " + str(para_index + 1) + "]\n" + ''.join(line + '\n' for line in para))
-    print(report_string)
+    report_string += ("[paragraph " + str(para_index + 1) + "]\n" + ''.join(line + '\n' for line in para))
+    report_string += "\n"
 
-"""
+#print(report_string.rstrip())
+
+
 # 4.4
-lsi_model = gensim.models.LsiModel(query_corpus, id2word=dictionary, num_topics=100)
-lsi_query = lsi_model[tfidf_query]
+lsi_query = lsi_model[query_tfidf]
+lsi_similarities = sorted(lsi_query, key=lambda kv: -abs(kv[1]))[:3]
+print(lsi_similarities)
+topics = lsi_model.show_topics()
 
-print( sorted(lsi_query, key=lambda kv: -abs(kv[1]))[:3] )
-#print( lsi.show_topics() )
+for topic in topics:
+    print(topic)
+lsi_report = ""
+for sim in lsi_similarities:
+    topic_index = sim[0]
+    print(topic_index+1)
+
 doc2similarity = enumerate(lsi_index[lsi_query])
-print( sorted(doc2similarity, key=lambda kv: -kv[1])[:3] )
-"""
+print(sorted(doc2similarity, key=lambda item: -item[1])[:3])
+
