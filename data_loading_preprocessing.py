@@ -8,11 +8,13 @@ from nltk.stem.porter import PorterStemmer
         Load and process (clean, tokenize and stem) data
 """
 
+
 def load_and_process_file(filename):
 
     # 1.0 random number generator
     # (Don't know why we need to do this, probably for later use)
     # (This is irrelevant in this file, but will keep it because the assignment says so. #goodstudent)
+    # (No it doesn't...)
     random.seed(123)
 
     # 1.1 Reads the file from the txt_files dir.
@@ -44,12 +46,6 @@ def load_and_process_file(filename):
 
         if line == "" and len(current_paragraph) != 0:
             # 1.3 Filter out paragraphs containing "Gutenberg"
-            """
-            guten_check = False
-            for word in current_paragraph:
-                if 'gutenberg' in word:
-                    guten_check = True
-            """
             if "gutenberg" not in current_paragraph:
 
                 # 1.6 Using PorterStemmer to stem words

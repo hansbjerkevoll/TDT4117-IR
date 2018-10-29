@@ -1,5 +1,10 @@
 import gensim
 
+"""
+    Task 3: Retrieval Models
+        Covert Bags-of-Words into TF-IDF weights and LSI (Latent Semantic Indexing) Weights
+"""
+
 
 def retrieval_models(corpus, dictionary):
 
@@ -18,6 +23,6 @@ def retrieval_models(corpus, dictionary):
     index_lsi = gensim.similarities.MatrixSimilarity(lsi_corpus)
 
     # 3.5 Report (print) and try to interpret first 3 LSI topics
-    print(lsi_model.show_topics())
+    print('\nLSI-Model Topics:\n' + str(lsi_model.show_topics()))
 
     return index_tfidf, tfidf_model, index_lsi, lsi_model

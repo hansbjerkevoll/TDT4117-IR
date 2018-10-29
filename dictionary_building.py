@@ -2,7 +2,7 @@ import gensim
 
 """
     Task 2: Dictionary building
-        Remove stopwords and convert paragraphs into Bags-of-Words(?)
+        Remove stopwords and convert paragraphs into Bags-of-Words
 """
 
 
