@@ -12,16 +12,13 @@ from nltk.stem.porter import PorterStemmer
 def load_and_process_file(filename):
 
     # 1.0 random number generator
-    # (Don't know why we need to do this, probably for later use)
-    # (This is irrelevant in this file, but will keep it because the assignment says so. #goodstudent)
-    # (No it doesn't...)
     random.seed(123)
 
     # 1.1 Reads the file from the txt_files dir.
-    # (No idea why they want us to use codecs.open(). Its outdated and bad. So I didn't)
+    # (Chose to use io.open() instead of codecs.open(), because codecs.open() is outdated)
     file = open("txt_files/" + filename, "r")
 
-    # 1.2 Partition file into seperate paragraphs
+    # 1.2 Partition file into separate paragraphs
     paragraph_list = list()
     current_paragraph = list()
 

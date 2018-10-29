@@ -11,7 +11,7 @@ def build_dictionary(paragraphs):
     # 2.0 Build a dictionary
     dictionary = gensim.corpora.Dictionary(paragraphs)
 
-    # 2.1 Filter out stopwords using list from shady internet place
+    # 2.1 Filter out stopwords using a local file with stopwords
     stopwords = open("txt_files/common-english-words.txt", "r").readline().split(',')
     stopwords_indexes = dictionary.doc2idx(stopwords)
     stopwords_id = list()
