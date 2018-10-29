@@ -13,13 +13,7 @@ def build_dictionary(paragraphs):
 
     # 2.1 Filter out stopwords using a local file with stopwords
     stopwords = open("txt_files/common-english-words.txt", "r").readline().split(',')
-    stopwords_indexes = dictionary.doc2idx(stopwords)
-    stopwords_id = list()
-
-    for i, stopword in enumerate(stopwords):
-        if stopwords_indexes[i] != -1:
-            stopwords_id.append(dictionary.token2id[stopword])
-
+    stopwords_id = [dictionary.token2id[stopword] for stopword in stopwords if stopword in dictionary.token2id]
     dictionary.filter_tokens(stopwords_id)
 
     # 2.2 Map paragraphs into Bags-Of-Words. A corpus object
