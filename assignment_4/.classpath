@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="ir4-sample/src"/>
+	<classpathentry kind="lib" path="ir4-sample/lib/lucene-analyzers-common-4.10.1.jar"/>
+	<classpathentry kind="lib" path="ir4-sample/lib/lucene-core-4.10.1.jar"/>
+	<classpathentry kind="lib" path="ir4-sample/lib/lucene-demo-4.10.1.jar"/>
+	<classpathentry kind="output" path="ir4-sample/bin"/>
+</classpath>
