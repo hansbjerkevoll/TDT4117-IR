@@ -21,11 +21,11 @@ public class MyIndexFiles {
 
 	/** Index all text files under a directory. */
 	public static void main(String[] args) {
-		String usage = "java org.apache.lucene.demo.IndexFiles <root_directory>";
-		if (args.length == 0) {
-			System.err.println("Usage: " + usage);
-			System.exit(1);
-		}
+//		String usage = "java org.apache.lucene.demo.IndexFiles <root_directory>";
+//		if (args.length == 0) {
+//			System.err.println("Usage: " + usage);
+//			System.exit(1);
+//		}
 
 		if (INDEX_DIR.exists()) {
 			System.out.println("Cannot save index to '" + INDEX_DIR
@@ -33,7 +33,7 @@ public class MyIndexFiles {
 			System.exit(1);
 		}
 
-		final File docDir = new File(args[0]);
+		final File docDir = new File("20news-part");
 		if (!docDir.exists() || !docDir.canRead()) {
 			System.out
 					.println("Document directory '"

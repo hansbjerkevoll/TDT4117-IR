@@ -3,8 +3,8 @@ package no.ntnu.idi.ir;
 
 import java.io.File;
 import org.apache.lucene.document.Document;
-import org.apache.lucene.document.StringField;
-import org.apache.lucene.document.Field.Store;
+import org.apache.lucene.document.Field;
+import org.apache.lucene.document.FieldType;
 
 /*
  * The task is to update the given `MyDocument' class (i.e implement the 'Document(File F)' method) to index the following fields per document:
@@ -41,10 +41,17 @@ public class MyDocument{
 
 		//TODO: create structured lucene document
 		
-		doc.add(new StringField("ID", news_doc.getId(), Store.YES));
-		doc.add(new StringField("FROM", news_doc.getFrom(), Store.YES));
-		doc.add(new StringField("SUBJECT", news_doc.getSubject(), Store.YES));
-		doc.add(new StringField("CONTENT", news_doc.getContent(), Store.YES));
+		FieldType fieldtype = new FieldType();
+		fieldtype.setIndexed(true);
+		fieldtype.setTokenized(true);
+		fieldtype.setStored(true);
+		fieldtype.freeze();
+		
+		
+		doc.add(new Field("ID", news_doc.getId(), fieldtype));
+		doc.add(new Field("FROM", news_doc.getFrom(), fieldtype));
+		doc.add(new Field("SUBJECT", news_doc.getSubject(), fieldtype));
+		doc.add(new Field("CONTENT", news_doc.getContent(), fieldtype));
 		
 		return doc;
 	}
